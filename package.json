@@ -1,0 +1,18 @@
+{
+  "name": "polymorph",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ universexyz/metaversian-republic-goerli --access-token db6f61aad5e9404e9f4a15625bf91330",
+    "create-local": "graph create --node http://localhost:8020/ universexyz/metaversian-republic-goerli",
+    "remove-local": "graph remove --node http://localhost:8020/ universexyz/metaversian-republic-goerli",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 universexyz/metaversian-republic-goerli"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.20.0",
+    "@graphprotocol/graph-ts": "^0.20.0",
+    "@types/node-fetch": "^2.5.10",
+    "node-fetch": "^2.6.1"
+  }
+}
