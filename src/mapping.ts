@@ -1,4 +1,5 @@
 import {
+  BigInt,
   log,
 } from "@graphprotocol/graph-ts";
 import {
@@ -11,6 +12,7 @@ import {
 import {
   TransferEntity,
   MintedEntity,
+  User
 } from "../generated/schema";
 
 export function handleApproval(event: Approval): void {}
@@ -24,6 +26,22 @@ export function handleTokenMinted(event: TokenMinted): void {
   mintEntity.tokenId = event.params.id;
   mintEntity.minter = event.params.to;
   mintEntity.discount = event.params.usedDiscount;
+
+  let userEntity =  User.load(event.params.to.toHexString());
+  
+  if(!userEntity){
+    userEntity = new User(event.params.to.toHexString());
+    userEntity.mintedOverall = 0;
+    userEntity.mintedDiscounted = 0;
+  }
+
+  if(event.params.usedDiscount){
+    userEntity.mintedDiscounted++;
+  }
+
+  userEntity.mintedOverall++;
+
+  userEntity.save();
   mintEntity.save();
 }
 

@@ -12,3 +12,9 @@ type MintedEntity @entity {
   tokenId: BigInt!
   discount: Boolean!
 }
+
+type User @entity {
+  id: ID!
+  mintedOverall: Int!
+  mintedDiscounted: Int!
+}
